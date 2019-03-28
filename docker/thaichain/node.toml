@@ -1,0 +1,22 @@
+[parity]
+chain = "/thaichain/config/spec.json"
+#base_path = "/thaichain/data"
+
+[network]
+port = 30333
+bootnodes = [
+   "enode://b7f6503f506132f6097d1f93732ba1bff1557254036bfd17245f6ecc8a9485218fc12d067f9eb257cffd82bca3129d2023c3a46b975c7195b081e3385b6859de@139.5.146.196:30333"
+]
+
+[rpc]
+interface = "all"
+cors = ["all"]
+hosts = ["all"]
+port = 8545
+apis = ["web3", "eth", "net", "personal", "parity", "parity_set", "traces", "rpc", "parity_accounts"]
+
+
+[websockets]
+port = 8546
+interface = "all"
+
