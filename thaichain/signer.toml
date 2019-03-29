@@ -4,25 +4,22 @@ base_path = "/thaichain/data"
 
 [network]
 port = 30333
-bootnodes = [
-   "enode://b7f6503f506132f6097d1f93732ba1bff1557254036bfd17245f6ecc8a9485218fc12d067f9eb257cffd82bca3129d2023c3a46b975c7195b081e3385b6859de@139.5.146.196:30333"
-]
+min_peers = 25
+max_peers = 50
+nat = "any"
+id = 7
+
 [rpc]
-interface = "all"
-cors = ["all"]
-hosts = ["all"]
-port = 8545
-apis = ["web3", "eth", "net", "personal", "parity", "parity_set", "traces", "rpc", "parity_accounts"]
+disable = true
 
 [account]
 unlock = []
 password = ["/thaichain/data/password.txt"]
 
 [mining]
-#force_sealing = true
-engine_signer = ""
+engine_signer = "0x0184555297adc495cdfc391d819ab955fa4284ab"
 reseal_on_txs = "none"
 
 [websockets]
-port = 8546
+disable = true
 

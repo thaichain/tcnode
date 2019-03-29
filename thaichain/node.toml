@@ -1,6 +1,6 @@
 [parity]
-chain = "/thaichain/config/spec.json"
-#base_path = "/thaichain/data"
+chain = "/thaichain/spec.json"
+base_path = "/thaichain/data"
 
 [network]
 port = 30333
