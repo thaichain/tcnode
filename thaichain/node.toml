@@ -10,9 +10,8 @@ nat = "any"
 id = 7
 bootnodes = [
    "enode://283b26316aba0b0c3bd5eb3c73e5a3aa0b24af9c09bc74c07cede2ac80d4354fee1fbe6dd3b448b077bb0b9a0b19dbc03ee0e5fa5032c368a41460da2dd36d40@thaichain.kku.ac.th:30333",
-   "enode://a6446ca620409f78f5e779f10535a27cfe481742438d35ecac3513db160ad8f5005a153f317fd041ba7bc68ac3607f211bea89222bdf1f542aa90c2ff2f154c7@thaichain.dome.cloud:30333"
+   "enode://77d378e153683df56a683ba8355ec2f73a06810de22458f5a0e1dbc612e3c43c0ab166deee87c5c4352ae682f8b51cb393c7c68ed1a44678f20d0fa1bd6b3a9b@thaichain.dome.cloud:30333"
 ]
-
 
 [rpc]
 interface = "all"
