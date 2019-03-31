@@ -45,12 +45,6 @@ interface ValidatorSet {
     function finalizeChange()
 	external;
 
-    function reportBenign(address validator, uint256 blockNumber)
-	external;
-
-    function reportMalicious(address validator, uint256 blockNumber, bytes proof)
-	external;
-
     function getValidators()
 	external
 	view
@@ -72,9 +66,6 @@ contract BaseOwnedSet is Owned {
 	uint index;
     }
 
-    // EVENTS
-    event Report(address indexed reporter, address indexed reported, bool indexed malicious);
-
     // STATE
     uint public recentBlocks = 20;
 
@@ -85,16 +76,6 @@ contract BaseOwnedSet is Owned {
 
     // MODIFIERS
 
-    /// Asserts whether a given address is currently a validator. A validator
-    /// that is pending to be added is not considered a validator, only when
-    /// that change is finalized will this method return true. A validator that
-    /// is pending to be removed is immediately not considered a validator
-    /// (before the change is finalized).
-    ///
-    /// For the purposes of this contract one of the consequences is that you
-    /// can't report on a validator that is currently active but pending to be
-    /// removed. This is a compromise for simplicity since the reporting
-    /// functions only emit events which can be tracked off-chain.
     modifier isValidator(address _someone) {
 	bool isIn = status[_someone].isIn;
 	uint index = status[_someone].index;
@@ -195,33 +176,6 @@ contract BaseOwnedSet is Owned {
 	return pending;
     }
 
-    // INTERNAL
-
-    // Report that a validator has misbehaved in a benign way.
-    function baseReportBenign(address _reporter, address _validator, uint _blockNumber)
-	internal
-	isValidator(_reporter)
-	isValidator(_validator)
-	isRecent(_blockNumber)
-    {
-	emit Report(_reporter, _validator, false);
-    }
-
-    // Report that a validator has misbehaved maliciously.
-    function baseReportMalicious(
-	address _reporter,
-	address _validator,
-	uint _blockNumber,
-	bytes _proof
-    )
-	internal
-	isValidator(_reporter)
-	isValidator(_validator)
-	isRecent(_blockNumber)
-    {
-	emit Report(_reporter, _validator, true);
-    }
-
     // Called when an initiated change reaches finality and is activated.
     function baseFinalizeChange()
 	internal
@@ -259,30 +213,6 @@ contract RelayedOwnedSet is BaseOwnedSet {
 	public
     {
 	relaySet = RelaySet(_relaySet);
-    }
-
-    function relayReportBenign(address _reporter, address _validator, uint _blockNumber)
-	external
-	onlyRelay
-    {
-	baseReportBenign(_reporter, _validator, _blockNumber);
-    }
-
-    function relayReportMalicious(
-	address _reporter,
-	address _validator,
-	uint _blockNumber,
-	bytes _proof
-    )
-	external
-	onlyRelay
-    {
-	baseReportMalicious(
-	    _reporter,
-	    _validator,
-	    _blockNumber,
-	    _proof
-	);
     }
 
     function setRelay(address _relaySet)
@@ -349,23 +279,6 @@ contract RelaySet is Owned, ValidatorSet {
 	onlySystem
     {
 	relayedSet.finalizeChange();
-    }
-
-    function reportBenign(address _validator, uint256 _blockNumber)
-	external
-    {
-	relayedSet.relayReportBenign(msg.sender, _validator, _blockNumber);
-    }
-
-    function reportMalicious(address _validator, uint256 _blockNumber, bytes _proof)
-	external
-    {
-	relayedSet.relayReportMalicious(
-	    msg.sender,
-	    _validator,
-	    _blockNumber,
-	    _proof
-	);
     }
 
     function setRelayed(address _relayedSet)
