@@ -108,6 +108,10 @@
     "0x46C1d8eB2c35b350d182B4Ea211F7aeC84d67D01": {
       "balance": "1000000000000000000000000000"
     }
-
-  }
+  },
+  "nodes" : [
+          "enode://73ecb81f13977cbc25a829d36f1c6bbb018386d4cc33504a3b33fd1b5ee7e3527d337d315e388837227d0d55536c6aaf45ae72c7a79e24427511da3fa4897cb0@enode.thaichain.io:30333",
+          "enode://283b26316aba0b0c3bd5eb3c73e5a3aa0b24af9c09bc74c07cede2ac80d4354fee1fbe6dd3b448b077bb0b9a0b19dbc03ee0e5fa5032c368a41460da2dd36d40@thaichain.kku.ac.th:30333",
+          "enode://77d378e153683df56a683ba8355ec2f73a06810de22458f5a0e1dbc612e3c43c0ab166deee87c5c4352ae682f8b51cb393c7c68ed1a44678f20d0fa1bd6b3a9b@thaichain.dome.cloud:30333"
+  ]
 }
