@@ -6,8 +6,10 @@ base_path = "/thaichain/data"
 port = 30333
 min_peers = 25
 max_peers = 50
-nat = "any"
 id = 7
+discovery=true
+reserved_only = false
+reserved_peers = "/thaichain/peers.txt"
 
 [rpc]
 disable = true
